@@ -31,8 +31,6 @@ void imprimir_matriz (Lenguaje *lenguaje){
 
 int es_final (Lenguaje* lenguaje, short estado){
     short auxiliar;
-    /*while (lenguaje->estados_finales [auxiliar] < lenguaje->cantidad_e_finales && lenguaje->estados_finales [auxiliar] != estado) auxiliar ++;
-    if (auxiliar < lenguaje->cantidad_e_finales) return 1;*/
     for (auxiliar = 0; auxiliar < lenguaje->cantidad_e_finales; auxiliar++){
         if (estado == lenguaje->estados_finales [auxiliar]) return 1;
     return 0;
@@ -46,7 +44,6 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
     while (cadena[numero_de_caracter] != '\0'){
         while (columna < lenguaje->tamanio_alfabeto && cadena [numero_de_caracter] != lenguaje->alfabeto[columna]) columna++;
         if (columna == lenguaje->tamanio_alfabeto){
-//            printf("No pertenece al lenguaje.\n");
             return 0;
         }
         fila = lenguaje->tabla [fila] [columna];
