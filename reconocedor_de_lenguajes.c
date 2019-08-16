@@ -31,8 +31,6 @@ void imprimir_matriz (Lenguaje *lenguaje){
 
 int es_final (Lenguaje* lenguaje, short estado){
     short auxiliar;
-    /*while (lenguaje->estados_finales [auxiliar] < lenguaje->cantidad_e_finales && lenguaje->estados_finales [auxiliar] != estado) auxiliar ++;
-    if (auxiliar < lenguaje->cantidad_e_finales) return 1;*/
     for (auxiliar = 0; auxiliar < lenguaje->cantidad_e_finales; auxiliar++){
         if (estado == lenguaje->estados_finales [auxiliar]) return 1;
     return 0;
@@ -46,7 +44,6 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
     while (cadena[numero_de_caracter] != '\0'){
         while (columna < lenguaje->tamanio_alfabeto && cadena [numero_de_caracter] != lenguaje->alfabeto[columna]) columna++;
         if (columna == lenguaje->tamanio_alfabeto){
-//            printf("No pertenece al lenguaje.\n");
             return 0;
         }
         fila = lenguaje->tabla [fila] [columna];
@@ -68,7 +65,7 @@ int main (void){
     char cadena [30+1];
 	/////////////////////////////////////////////////////
     //Definiendo el lenguaje de las palabras reservadas//
-    //      Trabajarlo asÌ lo hace m·s "generico"      //
+    //      Trabajarlo as√≠ lo hace m√°s "generico"      //
     /////////////////////////////////////////////////////
 	Lenguaje palabras_reservadas= {"Identificador",27, 5, 1,{3},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+'}};
 	Lenguaje *palabras_reservadasptr = & palabras_reservadas;
