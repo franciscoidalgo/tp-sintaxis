@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 typedef struct {
     char nombre_lenguaje [30];
@@ -41,7 +42,7 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
     int numero_de_caracter = 0;
     int fila = 0;
     int columna = 0;
-    while (cadena[numero_de_caracter] != '\0'){
+    while (numero_de_caracter < strlen(cadena)-1){
         while (columna < lenguaje->tamanio_alfabeto && cadena [numero_de_caracter] != lenguaje->alfabeto[columna]) columna++;
         if (columna == lenguaje->tamanio_alfabeto){
             return 0;
@@ -65,22 +66,32 @@ int main (void){
     char cadena [30+1];
 	/////////////////////////////////////////////////////
     //Definiendo el lenguaje de las palabras reservadas//
-    //      Trabajarlo asÌ lo hace m·s "generico"      //
+    //      Trabajarlo as√≠ lo hace m√°s "generico"      //
     /////////////////////////////////////////////////////
-	Lenguaje palabras_reservadas= {"Identificador",27, 5, 1,{3},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+'}};
-	Lenguaje *palabras_reservadasptr = & palabras_reservadas;
-	short TTPalabrasReservadas [5][27] = {
+	Lenguaje identificador= {"Identificador", 27, 5, 1,{3},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+'}};
+	Lenguaje *identificadorptr = & identificador;
+	short TTIdentificador [5][27] = {
 		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1},
 		{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4},
 		{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3},
 		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4},
 		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4}
-		};
-    pasar_matriz(palabras_reservadasptr,TTPalabrasReservadas);
-    imprimir_matriz(palabras_reservadasptr);
+	};
+    Lenguaje operador= {"Operador", 9, 3, 1,{1},{'+','-','.','/','<','>','!','=','*'}};
+    Lenguaje *operadorptr = &operador;
+    short TTOperador [3] [9] = {
+        {1,1,1,1,1,1,1,1,1},
+        {3,3,3,3,3,3,3,3,3},
+        {3,3,3,3,3,3,3,3,3}
+    };
+    pasar_matriz(identificadorptr,TTIdentificador);
+    pasar_matriz(operadorptr, TTOperador);
+    imprimir_matriz(identificadorptr);
+    imprimir_matriz(operadorptr);
     printf("Ingrese la cadena: ");
     fflush(stdin);
-    gets(cadena);
-    verificar_lenguaje(palabras_reservadasptr, cadena);
+    fgets(cadena,sizeof(cadena)-1,stdin);
+    verificar_lenguaje(operadorptr,cadena);
+    verificar_lenguaje(identificadorptr, cadena);
     return 0;
 }
