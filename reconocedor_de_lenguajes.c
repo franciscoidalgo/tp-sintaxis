@@ -10,7 +10,7 @@ typedef struct {
     short tabla [15] [30];
 } Lenguaje;
 
-void pasar_matriz (Lenguaje *lenguaje, short matriz[5][27]){
+void pasar_matriz (Lenguaje *lenguaje, short matriz[lenguaje->cantidad_estados][lenguaje->tamanio_alfabeto]){
 	int fila, columna;
 	for (fila = 0;fila<lenguaje->cantidad_estados; fila++){
 		for (columna = 0;columna < lenguaje->tamanio_alfabeto;columna++){
@@ -46,7 +46,7 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
     while (cadena[numero_de_caracter] != '\0'){
         while (columna < lenguaje->tamanio_alfabeto && cadena [numero_de_caracter] != lenguaje->alfabeto[columna]) columna++;
         if (columna == lenguaje->tamanio_alfabeto){
-            printf("No pertenece al lenguaje.\n");
+//            printf("No pertenece al lenguaje.\n");
             return 0;
         }
         fila = lenguaje->tabla [fila] [columna];
