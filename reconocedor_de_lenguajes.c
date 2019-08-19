@@ -19,7 +19,7 @@ void pasar_matriz (Lenguaje *lenguaje, short matriz[lenguaje->cantidad_estados][
 		}
 	}
 }
-
+/* Función de prueba que mustra la tabla de transiciones  de un lenguaje
 void imprimir_matriz (Lenguaje *lenguaje){
     int fila, columna;
 	for (fila = 0;fila<lenguaje -> cantidad_estados; fila++){
@@ -29,7 +29,7 @@ void imprimir_matriz (Lenguaje *lenguaje){
 		printf("\n");
 	}
 }
-
+*/
 int es_final (Lenguaje* lenguaje, short estado){
     short auxiliar;
     for (auxiliar = 0; auxiliar < lenguaje->cantidad_e_finales; auxiliar++){
@@ -64,10 +64,7 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
 int main (void){
 
     char cadena [30+1];
-	/////////////////////////////////////////////////////
-    //Definiendo el lenguaje de las palabras reservadas//
-    //      Trabajarlo así lo hace más "generico"      //
-    /////////////////////////////////////////////////////
+	//Lenguaje nombre_del_lenguaje = {"Nombre Completo", tamaño del alfabeto, cantidad de estados, cantidad de estados finales, {estados finales},{alfabeto}};
 	Lenguaje identificador= {"Identificador", 29, 9, 1,{7},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+','#','*'}};
 	Lenguaje *identificadorptr = & identificador;
 	short TTIdentificador [9][29] = {
@@ -114,11 +111,25 @@ int main (void){
     };
     Lenguaje constantes = {"Constante", 11, 12, 1, {10}, {'0','1','2','3','4','5','6','7','8','9','/'}};
     Lenguaje *constantesptr = &constantes;
-    short TTConstantes;
+    short TTConstantes [12] [11] = {
+        { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,11},
+        { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,11},
+        {11,11,11,11,11,11,11,11,11,11, 3},
+        { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,11},
+        { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,11},
+        {11,11,11,11,11,11,11,11,11,11, 6},
+        { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,11},
+        { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,11},
+        { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,11},
+        {10,10,10,10,10,10,10,10,10,10,11},
+        {11,11,11,11,11,11,11,11,11,11,11},
+        {11,11,11,11,11,11,11,11,11,11,11}
+    };
     pasar_matriz(identificadorptr, TTIdentificador);
     pasar_matriz(operadorptr, TTOperador);
     pasar_matriz(palabra_reservadaptr, TTPalabra_reservada);
     pasar_matriz(caracter_de_puntuacionptr, TTCaracter_de_puntuacion);
+    pasar_matriz(constantesptr, TTConstantes);
     printf("Ingrese la cadena: ");
     fflush(stdin);
     fgets(cadena,sizeof(cadena)-1,stdin);
@@ -126,5 +137,6 @@ int main (void){
     verificar_lenguaje(identificadorptr, cadena);
     verificar_lenguaje(palabra_reservadaptr, cadena);
     verificar_lenguaje(caracter_de_puntuacionptr, cadena);
+    verificar_lenguaje(constantesptr, cadena);
     return 0;
 }
