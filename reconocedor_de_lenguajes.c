@@ -52,7 +52,7 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
         numero_de_caracter++;
     }
     if (es_final (lenguaje, fila) == 1){
-        printf("Es un %s.\n", lenguaje->nombre_lenguaje);
+        printf("Es un/a %s.\n", lenguaje->nombre_lenguaje);
         return 1;
     }else
     {
@@ -68,14 +68,18 @@ int main (void){
     //Definiendo el lenguaje de las palabras reservadas//
     //      Trabajarlo así lo hace más "generico"      //
     /////////////////////////////////////////////////////
-	Lenguaje identificador= {"Identificador", 27, 5, 1,{3},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+'}};
+	Lenguaje identificador= {"Identificador", 29, 9, 1,{7},{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','+','#','*'}};
 	Lenguaje *identificadorptr = & identificador;
-	short TTIdentificador [5][27] = {
-		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1},
-		{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,4},
-		{2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3},
-		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4},
-		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4}
+	short TTIdentificador [9][29] = {
+		{8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,1,2,3},
+		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,8,8,8},
+		{5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,8,8,8},
+		{6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,8},
+		{4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,8,8},
+        {5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,8,7,8},
+		{6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,8,8,7},
+		{8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8},
+        {8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8}
 	};
     Lenguaje operador= {"Operador", 9, 3, 1,{1},{'+','-','.','/','<','>','!','=','*'}};
     Lenguaje *operadorptr = &operador;
@@ -84,12 +88,43 @@ int main (void){
         {3,3,3,3,3,3,3,3,3},
         {3,3,3,3,3,3,3,3,3}
     };
-    pasar_matriz(identificadorptr,TTIdentificador);
+    Lenguaje palabra_reservada = {"Palabra Reservada", 28, 13, 1, {11}, {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','(',')'}};
+    Lenguaje *palabra_reservadaptr = &palabra_reservada;
+    short TTPalabra_reservada [13] [28] = {
+      {12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12, 1,12},
+      { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,12,11},
+      { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,12,11},
+      { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,12,11},
+      { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,12,11},
+      { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,12,11},
+      { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,12,11},
+      { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,12,11},
+      { 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,12,11},
+      {10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,12,11},
+      {12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,11},
+      {12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12},
+      {12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12}
+    };
+    Lenguaje caracter_de_puntuacion = {"Caracter de Puntuacion", 6, 3, 1, {1}, {',',';','|','[',']','_'}};
+    Lenguaje *caracter_de_puntuacionptr = &caracter_de_puntuacion;
+    short TTCaracter_de_puntuacion [3] [6] = {
+        {1,1,1,1,1,1},
+        {2,2,2,2,2,2},
+        {2,2,2,2,2,2}
+    };
+    Lenguaje constantes = {"Constante", 11, 12, 1, {10}, {'0','1','2','3','4','5','6','7','8','9','/'}};
+    Lenguaje *constantesptr = &constantes;
+    short TTConstantes;
+    pasar_matriz(identificadorptr, TTIdentificador);
     pasar_matriz(operadorptr, TTOperador);
+    pasar_matriz(palabra_reservadaptr, TTPalabra_reservada);
+    pasar_matriz(caracter_de_puntuacionptr, TTCaracter_de_puntuacion);
     printf("Ingrese la cadena: ");
     fflush(stdin);
     fgets(cadena,sizeof(cadena)-1,stdin);
     verificar_lenguaje(operadorptr,cadena);
     verificar_lenguaje(identificadorptr, cadena);
+    verificar_lenguaje(palabra_reservadaptr, cadena);
+    verificar_lenguaje(caracter_de_puntuacionptr, cadena);
     return 0;
 }
