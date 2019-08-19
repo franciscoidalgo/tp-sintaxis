@@ -86,8 +86,6 @@ int main (void){
     };
     pasar_matriz(identificadorptr,TTIdentificador);
     pasar_matriz(operadorptr, TTOperador);
-    imprimir_matriz(identificadorptr);
-    imprimir_matriz(operadorptr);
     printf("Ingrese la cadena: ");
     fflush(stdin);
     fgets(cadena,sizeof(cadena)-1,stdin);
