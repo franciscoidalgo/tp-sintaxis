@@ -19,17 +19,7 @@ void pasar_matriz (Lenguaje *lenguaje, short matriz[lenguaje->cantidad_estados][
 		}
 	}
 }
-/* Función de prueba que mustra la tabla de transiciones  de un lenguaje
-void imprimir_matriz (Lenguaje *lenguaje){
-    int fila, columna;
-	for (fila = 0;fila<lenguaje -> cantidad_estados; fila++){
-		for (columna = 0;columna < lenguaje -> tamanio_alfabeto;columna++){
-			printf("%d,", lenguaje -> tabla [fila] [columna]);
-		}
-		printf("\n");
-	}
-}
-*/
+
 int es_final (Lenguaje* lenguaje, short estado){
     short auxiliar;
     for (auxiliar = 0; auxiliar < lenguaje->cantidad_e_finales; auxiliar++){
@@ -53,10 +43,10 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
     }
     if (es_final (lenguaje, fila) == 1){
         printf("Es un/a %s.\n", lenguaje->nombre_lenguaje);
-        return 1;
+        return 0;
     }else
     {
-        return 0;
+        return 1;
     }
 
 }
