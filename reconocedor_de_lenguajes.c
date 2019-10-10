@@ -125,11 +125,25 @@ int main (void){
         {11,11,11,11,11,11,11,11,11,11,11},
         {11,11,11,11,11,11,11,11,11,11,11}
     };
-    pasar_matriz(identificadorptr, TTIdentificador);
+    Lenguaje tiposDeDatos = {"Tipo de Datos",7,8,1,{3},{'i','n','t','c','h','a','r'}};
+    Lenguaje *tiposDeDatosptr = &tiposDeDatos;
+    short TTtiposDeDatos [8] [7] = {
+		{1,7,7,4,7,7,7},
+		{7,2,7,7,7,7,7},
+		{7,7,3,7,7,7,7},
+		{7,7,7,7,7,7,7},
+		{7,7,7,7,5,7,7},
+		{7,7,7,7,7,6,7},
+		{7,7,7,7,7,7,3},
+		{7,7,7,7,7,7,7},	
+	};
+    
+	pasar_matriz(identificadorptr, TTIdentificador);
     pasar_matriz(operadorptr, TTOperador);
     pasar_matriz(palabra_reservadaptr, TTPalabra_reservada);
     pasar_matriz(caracter_de_puntuacionptr, TTCaracter_de_puntuacion);
     pasar_matriz(constantesptr, TTConstantes);
+    pasar_matriz(tiposDeDatosptr, TTtiposDeDatos);
     printf("Ingrese la cadena: ");
     fflush(stdin);
     fgets(cadena,sizeof(cadena)-1,stdin);
@@ -138,5 +152,6 @@ int main (void){
     verificar_lenguaje(palabra_reservadaptr, cadena);
     verificar_lenguaje(caracter_de_puntuacionptr, cadena);
     verificar_lenguaje(constantesptr, cadena);
+    verificar_lenguaje(tiposDeDatosptr, cadena);
     return 0;
 }
