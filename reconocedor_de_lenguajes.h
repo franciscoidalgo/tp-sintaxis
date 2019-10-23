@@ -50,12 +50,43 @@ int verificar_lenguaje (Lenguaje* lenguaje, char cadena []){
 
 }
 
-/*int verificar_archivo(char nombre []){
+/*
+int verificarArchivo(char nombre []){
     FILE *codigo = fopen(nombre, "r");
     if (codigo == NULL){
+        prtinf("No se encuentra el archivo");
         return -1;
     }
+}
 
+int procesarArchivo(char nombre[]){
+    verificarArchivo(nombre[]);
+    while (fgets(cadena,sizeof(cadena)-1,codigo)!= NULL){
+        if (verificar_lenguaje(tablaptr,cadena)== 1){
+            printf("Se detecto un error lexico");
+            return (0);
+        }
+        ***ACA DEBERIAMOS TENER UN BUFFER GLOBAL Y AHI IR AGREGANDO TODOS LOS TOKENS***
+        }
+    parsear(buffer);
+    printf("No se detectaron errores de ningun tipo en el codigo");
+    fclose(codigo);
+    return (0);
+}
+
+int parsear(char buffer[]){
+    ***HACER LO QUE HAGA EL PARSER***
+    for (i=0, i= TAMAÑO BUFFER, i++){
+        char tokenActual[] = buffer[i];
+        char tokenSiguiente[] = buffer[i+1];
+        ***HABRIA QUE TENER UN TOKEN FINAL***
+
+        if (EL SIGUIENTE TOKEN NO ES EL CORRECTO){
+            printf("Se detecto un error sintactico);
+            return(1);
+        }
+    }
+    return(0);
 }
 */
 void inicializar_lenguajes (void){
